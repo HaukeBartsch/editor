@@ -1,0 +1,151 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Web-based editor for Magick Box buckets">
+    <meta name="author" content="Hauke Bartsch">
+    <link rel="icon" href="views/css/favicon.ico">
+
+    <title>Bucket editor</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/views/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="/views/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/views/css/theme.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="views/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/views/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#about" data-toggle="modal" data-target="#about-modal">Bucket Editor</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container-fluid theme-showcase" role="main">
+
+      <div class="col-xs-1">
+        <table class="table small table-striped table-hover table-condensed">
+          <thead>
+            <tr> <th>Files</th></tr>  
+          </thead>
+          <tbody>
+              <tr>
+                <td><div class="file">info.json</div></td>
+              </tr>
+              <tr>
+                <td><div class="file">work.sh</div></td>
+              </tr>
+              <tr>
+                <td><div class="file">db-plugin.code</div></td>
+              </tr>              
+          </tbody>
+        </table>
+      </div>
+      <div class="col-xs-11">
+        <div id="editor">
+        </div>
+      </div>
+
+
+    </div> <!-- /container -->
+
+<div class="modal fade" id="about-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">About</h4>
+      </div>
+      <div class="modal-body">
+        <p>Web-based text editor for Buckets definition files. See <a href="https://github.com/HaukeBartsch/editor">https://github.com/HaukeBartsch/</a> for details.
+        
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/views/js/bootstrap.min.js"></script>
+    <script src="/views/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/views/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/views/js/ace.js"></script>
+    
+    <script>
+       var current_script = "";
+       var editor = ace.edit("editor");
+       editor.setTheme("views/js/monokai");
+       editor.getSession().setMode("views/js/javascript");
+       
+       jQuery(document).ready(function() {
+         
+         jQuery('.file').click(function() {
+             file = jQuery(this).text();
+             console.log('selected this file ' + file);
+             jQuery.get(file, function(data) {
+                if (typeof editor !== 'undefined') {
+                  editor.setValue(data);
+                  //console.log("extensions: %s %s %s\n", file.slice(-5), file.slice(-3), file.slice(-5));
+                  if (file.slice(-5) == ".json") {
+                     editor.getSession().setMode("views/js/json");
+                  }
+                  if (file.slice(-3) == ".sh") {
+                     editor.getSession().setMode("views/js/batchfile");
+                  }
+                  if (file.slice(-5) == ".code") {
+                     editor.getSession().setMode("views/js/batchfile");
+                  }
+                  current_script = file;
+                }
+             });
+         });
+         
+         editor.getSession().on('change', function() {
+           // update this file
+           if (current_script !== "") {
+              console.log('update : ' + current_script);
+              jQuery.post('update', { "content": editor.getValue(), "file": current_script });
+           }
+         });
+       })
+    </script>
+  </body>
+</html>
+
