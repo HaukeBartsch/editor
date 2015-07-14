@@ -117,10 +117,12 @@
        var editor = ace.edit("editor");
        editor.setTheme("ace/theme/katzenmilch");
        editor.getSession().setMode("ace/mode/javascript");
+       var blockupdate = true;
        
        jQuery(document).ready(function() {
          
          jQuery('.file').click(function() {
+             blockupdate = true;
              file = jQuery(this).text();
              console.log('selected this file ' + file);
              jQuery.get(file, function(data) {
@@ -137,12 +139,15 @@
                      editor.getSession().setMode("ace/mode/batchfile");
                   }
                   current_script = file;
+                  blockupdate = false; // allow changes to propagate again
                 }
              });
          });
          
          editor.getSession().on('change', function() {
-           // update this file
+           if (blockupdate) // don't do anything if we are switching files
+              return;
+           // update current_script file
            if (current_script !== "") {
               console.log('update : ' + current_script);
               jQuery.post('update', { "content": editor.getValue(), "file": current_script });
