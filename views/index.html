@@ -133,10 +133,10 @@
                      editor.getSession().setMode("ace/mode/json");
                   }
                   if (file.slice(-3) == ".sh") {
-                     editor.getSession().setMode("ace/mode/batchfile");
+                     editor.getSession().setMode("ace/mode/sh");
                   }
                   if (file.slice(-5) == ".code") {
-                     editor.getSession().setMode("ace/mode/batchfile");
+                     editor.getSession().setMode("ace/mode/sh");
                   }
                   current_script = file;
                   blockupdate = false; // allow changes to propagate again
