@@ -1,6 +1,6 @@
 body {
-  padding-top: 70px;
-  padding-bottom: 30px;
+  padding-top: 60px;
+  padding-bottom: 10px;
 }
 
 .theme-dropdown .dropdown-menu {
@@ -40,7 +40,13 @@ body {
 
 .container-fluid {
   padding-left: 3px;
-  background-image: url("/views/img/RAVEN-white.svg");
+}
+
+
+#editor {
+  background-image: url("/views/img/RAVEN-white.png");
   background-repeat: no-repeat;
   background-position: right bottom;
+  background-size: 40% auto;
+  background-color: rgba(243, 242, 243, 0.2)
 }

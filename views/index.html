@@ -86,8 +86,12 @@
         <h4 class="modal-title">About</h4>
       </div>
       <div class="modal-body">
-        <p>Web-based text editor for Buckets definition files. See <a href="https://github.com/HaukeBartsch/editor">https://github.com/HaukeBartsch/</a> for details.
-        
+        <p>
+          Web-based text editor for Buckets definition files. 
+          See <a href="https://github.com/HaukeBartsch/editor">https://github.com/HaukeBartsch/</a> for details.
+        </p>
+        <p>
+          There is no separate save button. Any change is automatically written into the files.
         </p>
       </div>
       <div class="modal-footer">
@@ -106,13 +110,13 @@
     <script src="/views/js/docs.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/views/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="/views/js/ace.js"></script>
+    <script src="/views/js/ace/src-min-noconflict/ace.js"></script>
     
     <script>
        var current_script = "";
        var editor = ace.edit("editor");
-       editor.setTheme("views/js/monokai");
-       editor.getSession().setMode("views/js/javascript");
+       editor.setTheme("ace/theme/katzenmilch");
+       editor.getSession().setMode("ace/mode/javascript");
        
        jQuery(document).ready(function() {
          
@@ -124,13 +128,13 @@
                   editor.setValue(data);
                   //console.log("extensions: %s %s %s\n", file.slice(-5), file.slice(-3), file.slice(-5));
                   if (file.slice(-5) == ".json") {
-                     editor.getSession().setMode("views/js/json");
+                     editor.getSession().setMode("ace/mode/json");
                   }
                   if (file.slice(-3) == ".sh") {
-                     editor.getSession().setMode("views/js/batchfile");
+                     editor.getSession().setMode("ace/mode/batchfile");
                   }
                   if (file.slice(-5) == ".code") {
-                     editor.getSession().setMode("views/js/batchfile");
+                     editor.getSession().setMode("ace/mode/batchfile");
                   }
                   current_script = file;
                 }

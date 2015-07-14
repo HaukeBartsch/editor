@@ -50,7 +50,7 @@ func indexpage(w http.ResponseWriter, r *http.Request) {
 }
 
 func returnViews(w http.ResponseWriter, r *http.Request) {
-    fmt.Printf("path: %s %s\n", r.URL.Path, r.Method) // get request method
+    //fmt.Printf("path: %s %s\n", r.URL.Path, r.Method) // get request method
     if r.Method == "GET" {
         data, err := Asset(r.URL.Path[1:]) // remove the leading '/'
         if err != nil {
@@ -62,6 +62,7 @@ func returnViews(w http.ResponseWriter, r *http.Request) {
             t, _ := template.New("dummy").Parse(string(data))
             t.Execute(w, nil)
         } else {
+            //fmt.Printf("export: %s\n%s\n", r.URL.Path, string(data))
             fmt.Fprintf(w, "%s\n", string(data))
         }
     }
