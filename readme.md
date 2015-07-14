@@ -1,7 +1,8 @@
-Editor - simple web-based text editor for MagickBox bucket files
-=================================================================
+Simple web-based text editor for MagickBox bucket files
+=========================================================
 
-This application can be used to edit files on the (bucket-) local file system using a web-interface.
+Editor is an application used to edit files on the (bucket-) local file system. The interface is
+rendered as a web-site.
 
 Build instructions
 --------------------
