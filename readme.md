@@ -2,7 +2,9 @@ Simple web-based text editor for MagickBox bucket files
 =========================================================
 
 Editor is an application used to edit files on the (bucket-) local file system. The interface is
-rendered as a web-site. 
+rendered as a web-site. The only files editable with this application currently are info.json, work.sh, and
+db-plugin.code. Using a golang (statically-linked) executable no web-server like apache or nginx need to
+be installed inside the bucket.
 
 Build instructions
 --------------------
@@ -20,6 +22,7 @@ Test the application by calling:
 ```
   ./editor open
 ```
+which will open a web-server that listens to port 9090 on the local machine. Connect to it using http://localhost:9090.
 
 <img src="img/screenshot-bucketeditor.png" alt="Screenshot of bucket editor">
 
