@@ -8,6 +8,16 @@ like apache or nginx need to be installed inside the bucket.
 
 This application is used as part of the MagickBox container runtime environment.
 
+Download executable for your platform:
+
+* Linux
+   wget https://github.com/HaukeBartsch/editor/raw/master/binary/Linux64/editor
+* MacOS
+   wget https://github.com/HaukeBartsch/editor/raw/master/binary/MacOS/editor
+* Windows
+   wget https://github.com/HaukeBartsch/editor/raw/master/binary/Windows64/editor
+
+
 Build instructions
 --------------------
 
@@ -24,7 +34,7 @@ Test the application by calling:
 ```
   ./editor open
 ```
-which will open a web-server that listens to port 9090 on the local machine. Connect to it using http://localhost:9090.
+which should open a web-server that listens to port :9090 on the local machine. Connect to http://localhost:9090 from a web-browser to see the inferface.
 
 <img src="img/screenshot-bucketeditor.png" alt="Screenshot of bucket editor">
 

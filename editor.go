@@ -5,6 +5,7 @@ import "os"
 import "sync"
 import "github.com/codegangsta/cli"
 
+// message with standard prompt
 func p( t string) {
   fmt.Println("> ", t)
 }
@@ -23,7 +24,7 @@ func main() {
      app.Flags = []cli.Flag {
        cli.BoolFlag {
          Name:  "verbose",
-         Usage: "Generate verbose output with intermediate files.",
+         Usage: "Generate more verbose output",
        },
      }
 
@@ -49,7 +50,7 @@ func main() {
              var wg sync.WaitGroup
              wg.Add(1)
              go webinterface( verbose, init_flag, wg )
-             wg.Wait()
+             wg.Wait() // wait for the web-interface to be closed
          },
        },
      }
