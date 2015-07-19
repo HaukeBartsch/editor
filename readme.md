@@ -11,11 +11,11 @@ This application is used as part of the MagickBox container runtime environment.
 Download executable for your platform:
 
 * Linux
-    wget https://github.com/HaukeBartsch/editor/raw/master/binary/Linux64/editor
+	wget https://github.com/HaukeBartsch/editor/raw/master/binary/Linux64/editor
 * MacOS
-    wget https://github.com/HaukeBartsch/editor/raw/master/binary/MacOS/editor
+	wget https://github.com/HaukeBartsch/editor/raw/master/binary/MacOS/editor
 * Windows
-    wget https://github.com/HaukeBartsch/editor/raw/master/binary/Windows64/editor
+	wget https://github.com/HaukeBartsch/editor/raw/master/binary/Windows64/editor
 
 
 Build instructions
