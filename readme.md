@@ -1,10 +1,12 @@
 Simple web-based text editor for MagickBox bucket files
 =========================================================
 
-Editor is an application used to edit files on the (bucket-) local file system. The interface is
-rendered as a web-site. The only files editable with this application currently are info.json, work.sh, and
-db-plugin.code. Using a golang (statically-linked) executable no web-server like apache or nginx need to
-be installed inside the bucket.
+Editor is a stand-alone application (no installation required) used to edit files on the (bucket-) local file system.
+The interface is rendered as a web-site (jquery, bootstrap, ace.js). The only files editable with this application
+currently are info.json, work.sh, and db-plugin.code. Using a golang (statically-linked) executable no web-server 
+like apache or nginx need to be installed inside the bucket.
+
+This application is used as part of the MagickBox container runtime environment.
 
 Build instructions
 --------------------
