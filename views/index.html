@@ -8,7 +8,7 @@
     <meta name="author" content="Hauke Bartsch">
     <link rel="icon" href="views/css/favicon.ico">
 
-    <title>Bucket editor</title>
+    <title>Bucket Editor</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/views/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#about" data-toggle="modal" data-target="#about-modal">Bucket Editor</a>
+          <a class="navbar-brand" href="#about" data-toggle="modal" data-target="#about-modal">Editor <small>change bucket configuration files</small></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -91,7 +91,7 @@
           See <a href="https://github.com/HaukeBartsch/editor">https://github.com/HaukeBartsch/</a> for details.
         </p>
         <p>
-          There is no separate save button. Any change is automatically written into the files.
+          There is no save button. Any change is automatically written to disk.
         </p>
       </div>
       <div class="modal-footer">
@@ -128,7 +128,6 @@
              jQuery.get(file, function(data) {
                 if (typeof editor !== 'undefined') {
                   editor.setValue(data);
-                  //console.log("extensions: %s %s %s\n", file.slice(-5), file.slice(-3), file.slice(-5));
                   if (file.slice(-5) == ".json") {
                      editor.getSession().setMode("ace/mode/json");
                   }
@@ -153,6 +152,8 @@
               jQuery.post('update', { "content": editor.getValue(), "file": current_script });
            }
          });
+         
+         jQuery('.file').first().trigger('click'); // load the first file on startup
        })
     </script>
   </body>
